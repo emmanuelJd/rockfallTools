@@ -1,0 +1,23 @@
+{
+  "name": "rockfalltools",
+  "version": "0.0.1",
+  "description": "contains functions implemented by rockfall",
+  "dependencies": {
+    "unit.js": "^2.0.0",
+    "mocha": "^3.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/mocha ./tests/*Test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emmanuelJd/rockfallTools.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emmanuelJd/rockfallTools/issues"
+  },
+  "homepage": "https://github.com/emmanuelJd/rockfallTools#readme"
+}
