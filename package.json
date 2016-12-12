@@ -1,7 +1,7 @@
 {
   "name": "rockfalltools",
   "version": "0.0.1",
-  "description": "contains functions implemented by rockfall",
+  "description": "contains functions implemented for rockfall",
   "dependencies": {
     "unit.js": "^2.0.0",
     "mocha": "^3.2.0"
