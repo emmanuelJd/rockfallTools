@@ -1,16 +1,41 @@
+"use strict";
+
 var assert = require('assert');
 var plate = require('./_initialData');
+var checkVertical = require('../functions/checkVertical');
 
-console.log(plate);
+describe('---- Check vertical align ----', function() {
+    console.log("boardGame :");
+    console.log(plate.PlateVisu);
+    it('for 4 pieces to win, it should return true in win object', function() {
+        let pieceToWin = 4,
+            pieceToPlay = {
+                x: 0,
+                y: 1,
+                user: 1
+            };
+        let result = checkVertical(plate.Plate, pieceToWin, pieceToPlay);
+        console.log("Number of align piece to win : " + pieceToWin);
+        console.log("Piece to start with : ");
+        console.log(pieceToPlay);
+        assert.equal(result.win, true);
+        assert.equal(result.user, pieceToPlay.user);
+        assert.equal(result.count, 5);
+    });
 
-describe('check vertical align', function() {
-  it('for 4 pieces to win, it should return true in win object', function() {
-    //to define a win align 4 pieces
-  });
-});
-
-describe('check vertical align', function() {
-  it('for 4 pieces to win, it should return false in win object', function() {
-    //to define a win align 4 pieces
-  });
+    it('for 4 pieces to win, it should return false in win object', function() {
+        let pieceToWin = 4,
+            pieceToPlay = {
+                x: 1,
+                y: 3,
+                user: 2
+            };
+        let result = checkVertical(plate.Plate, pieceToWin, pieceToPlay);
+        console.log("Number of align piece to win : " + pieceToWin);
+        console.log("Piece to start with : ");
+        console.log(pieceToPlay);
+        assert.equal(result.win, false);
+        assert.equal(result.user, pieceToPlay.user);
+        assert.equal(result.count, 3);
+    });
 });

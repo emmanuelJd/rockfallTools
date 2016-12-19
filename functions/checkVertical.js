@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @param boardGame object with game information
  * @param nbForWinLine number horizontal piece align to win
@@ -13,10 +14,10 @@ function checkVertical(boardGame, nbForWinLine, piece) {
     if (!boardGame.length) throw new Error("undefined boardGame!");
     if (!boardGame[0].length) throw new Error("undefined boardGame!");
     if (boardGame.length < nbForWinLine) throw new Error("boardGame too small to expect a win!");
-    if (!piece.hasOwnProperty(x) || !piece.hasOwnProperty(y) || piece.hasOwnProperty(user)) throw new Error("piece not valide!");
+    if (!piece.hasOwnProperty("x") || !piece.hasOwnProperty("y") || !piece.hasOwnProperty("user")) throw new Error("piece not valide!");
 
     let xStartPosition = piece.x;
-    let yStartPosition = piexe.y;
+    let yStartPosition = piece.y;
     let user = piece.user;
     let countPiece = 1;
 
@@ -49,3 +50,5 @@ function checkVertical(boardGame, nbForWinLine, piece) {
     }
     return result;
 }
+
+module.exports = checkVertical;
