@@ -28,7 +28,7 @@ describe('---- Check horizontal align ----', function() {
             pieceToPlay = {
                 x: 1,
                 y: 4,
-                user: 1
+                user: 2
             };
         let result = checkHorizontal(plate.Plate, pieceToWin, pieceToPlay);
         console.log("Number of align piece to win : " + pieceToWin);

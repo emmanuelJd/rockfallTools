@@ -28,6 +28,8 @@ function checkVertical(boardGame, nbForWinLine, piece) {
             if (tamponPiece.user == user) {
                 countPiece++;
             }
+        }else{
+          break;
         }
     }
 
@@ -38,6 +40,8 @@ function checkVertical(boardGame, nbForWinLine, piece) {
             if (tamponPiece.user == user) {
                 countPiece++;
             }
+        }else{
+          break;
         }
     }
     let result = {
@@ -45,6 +49,7 @@ function checkVertical(boardGame, nbForWinLine, piece) {
         "user": user,
         "win": false
     };
+
     if (nbForWinLine <= countPiece) {
         result.win = true;
     }

@@ -28,6 +28,8 @@ function checkHorizontal(boardGame, nbForWinLine, piece) {
             if (tamponPiece.user == user) {
                 countPiece++;
             }
+        }else{
+          break;
         }
     }
 
@@ -38,6 +40,8 @@ function checkHorizontal(boardGame, nbForWinLine, piece) {
             if (tamponPiece.user == user) {
                 countPiece++;
             }
+        }else{
+          break;
         }
     }
     let result = {
