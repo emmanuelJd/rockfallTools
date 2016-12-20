@@ -22,52 +22,58 @@ function checkDiagonal(boardGame, nbForWinLine, piece) {
     let user = piece.user;
     let countPieceTopRight = 1;
     let countPieceTopLeft = 1;
+    let arrayOfWinPieceRight = [];
+    let arrayOfWinPieceLeft = [];
 
     /** count to the top-right and bottom right */
     let indiceTopRight = 1;
     let indiceBottomRight = 1;
     //update vertical position because of diagonal
     let verticalAjust = 1;
-
+    let stopCountTopRight = false,
+        stopCountTopLeft = false;
     //to the right
     for (let i = xStartPosition + 1, boardLength = boardGame[0].length; i < boardLength; i++) {
 
 
-        if (yStartPosition - verticalAjust >= 0) {
-                      let tamponPieceTopRight = boardGame[yStartPosition - verticalAjust][i];
+        if (yStartPosition - verticalAjust >= 0 && !stopCountTopRight) {
+            let tamponPieceTopRight = boardGame[yStartPosition - verticalAjust][i];
             if (tamponPieceTopRight != 0) {
                 if (tamponPieceTopRight.user == user) {
                     countPieceTopRight++;
+                    arrayOfWinPieceRight.push(tamponPieceTopRight);
                 }
-            }else{
-              /break;
+            } else {
+                stopCountTopRight = true;
             }
         }
-        if (yStartPosition + verticalAjust < boardGame.length) {
+        if (yStartPosition + verticalAjust < boardGame.length && !stopCountTopLeft) {
             let tamponPieceBottomRight = boardGame[yStartPosition + verticalAjust][i];
             if (tamponPieceBottomRight != 0) {
                 if (tamponPieceBottomRight.user == user) {
                     countPieceTopLeft++;
+                    arrayOfWinPieceLeft.push(tamponPieceTopLeft);
                 }
-            }else{
-              /break;
+            } else {
+                stopCountTopLeft = true;
             }
-
         }
-
         verticalAjust++;
     }
     //to the left
     verticalAjust = 1;
+    stopCountTopRight = false;
+    stopCountTopLeft = false;
     for (let i = xStartPosition - 1; i >= 0; i--) {
-              if (yStartPosition - verticalAjust >= 0) {
-                            let tamponPieceTopLeft = boardGame[yStartPosition - verticalAjust][i];
+        if (yStartPosition - verticalAjust >= 0) {
+            let tamponPieceTopLeft = boardGame[yStartPosition - verticalAjust][i];
             if (tamponPieceTopLeft != 0) {
                 if (tamponPieceTopLeft.user == user) {
                     countPieceTopLeft++;
+                    arrayOfWinPieceLeft.push(tamponPieceTopLeft);
                 }
-            }else{
-              /break;
+            } else {
+                stopCountTopLeft = true;
             }
         }
         if (yStartPosition + verticalAjust < boardGame.length) {
@@ -75,22 +81,30 @@ function checkDiagonal(boardGame, nbForWinLine, piece) {
             if (tamponPieceBottomLeft != 0) {
                 if (tamponPieceBottomLeft.user == user) {
                     countPieceTopRight++;
+                    arrayOfWinPieceRight.push(tamponPieceTopRight);
                 }
-            }else{
-              /break;
+            } else {
+                stopCountTopRight = true;
             }
         }
         verticalAjust++;
     }
 
     let result = {
-        "countPieceTopLeft": countPieceTopLeft,
-        "countPieceTopRight": countPieceTopRight,
+        "countPiece": 0,
         "user": user,
-        "win": false
+        "win": false,
+        "winPiece": []
     };
-    if (nbForWinLine <= countPieceTopRight || nbForWinLine <= countPieceTopLeft) {
+    if (nbForWinLine <= countPieceTopRight) {
         result.win = true;
+        result.countPiece = countPieceTopRight;
+        result.winPiece = arrayOfWinPieceRight;
+    }
+    if (nbForWinLine <= countPieceTopLeft && countPieceTopRight < countPieceTopLeft) {
+        result.win = true;
+        result.countPiece = countPieceTopLeft;
+        result.winPiece = arrayOfWinPieceLeft;
     }
     return result;
 }

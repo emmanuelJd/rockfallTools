@@ -20,16 +20,17 @@ function checkVertical(boardGame, nbForWinLine, piece) {
     let yStartPosition = piece.y;
     let user = piece.user;
     let countPiece = 1;
-
+    let arrayOfWinPiece = [];
     /** count to the bottom */
     for (let i = yStartPosition + 1; i < boardGame.length; i++) {
         let tamponPiece = boardGame[i][xStartPosition];
         if (tamponPiece != 0) {
             if (tamponPiece.user == user) {
                 countPiece++;
+                arrayOfWinPiece.push(tamponPiece);
             }
-        }else{
-          break;
+        } else {
+            break;
         }
     }
 
@@ -39,19 +40,22 @@ function checkVertical(boardGame, nbForWinLine, piece) {
         if (tamponPiece != 0) {
             if (tamponPiece.user == user) {
                 countPiece++;
+                arrayOfWinPiece.push(tamponPiece);
             }
-        }else{
-          break;
+        } else {
+            break;
         }
     }
     let result = {
         "count": countPiece,
         "user": user,
-        "win": false
+        "win": false,
+        "winPiece": []
     };
 
     if (nbForWinLine <= countPiece) {
         result.win = true;
+        result.winPiece = arrayOfWinPiece;
     }
     return result;
 }

@@ -18,7 +18,7 @@ describe('---- Check diagonal align ----', function() {
         console.log("Number of align piece to win : " + pieceToWin);
         console.log("Piece to start with : ");
         console.log(pieceToPlay);
-        //assert.equal(result.win, true);
+        assert.equal(result.win, true);
         assert.equal(result.user, pieceToPlay.user);
         assert.equal(result.countPieceTopLeft, 3);
         assert.equal(result.countPieceTopRight, 2);
