@@ -21,6 +21,10 @@ describe('---- Check horizontal align ----', function() {
         assert.equal(result.win, true);
         assert.equal(result.user, pieceToPlay.user);
         assert.equal(result.count, 4);
+        let winPiece = result.winPiece;
+        for(let i = 0, length = winPiece.length; i < length;i++){
+          assert.equal(winPiece[i].y, 1);
+        }
     });
 
     it('for 4 pieces to win, it should return false in win object', function() {

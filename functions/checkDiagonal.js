@@ -22,8 +22,8 @@ function checkDiagonal(boardGame, nbForWinLine, piece) {
     let user = piece.user;
     let countPieceTopRight = 1;
     let countPieceTopLeft = 1;
-    let arrayOfWinPieceRight = [];
-    let arrayOfWinPieceLeft = [];
+    let arrayOfWinPieceRight = [piece];
+    let arrayOfWinPieceLeft = [piece];
 
     /** count to the top-right and bottom right */
     let indiceTopRight = 1;
@@ -52,7 +52,7 @@ function checkDiagonal(boardGame, nbForWinLine, piece) {
             if (tamponPieceBottomRight != 0) {
                 if (tamponPieceBottomRight.user == user) {
                     countPieceTopLeft++;
-                    arrayOfWinPieceLeft.push(tamponPieceTopLeft);
+                    arrayOfWinPieceLeft.push(tamponPieceBottomRight);
                 }
             } else {
                 stopCountTopLeft = true;
@@ -81,7 +81,7 @@ function checkDiagonal(boardGame, nbForWinLine, piece) {
             if (tamponPieceBottomLeft != 0) {
                 if (tamponPieceBottomLeft.user == user) {
                     countPieceTopRight++;
-                    arrayOfWinPieceRight.push(tamponPieceTopRight);
+                    arrayOfWinPieceRight.push(tamponPieceBottomLeft);
                 }
             } else {
                 stopCountTopRight = true;

@@ -20,7 +20,7 @@ function checkVertical(boardGame, nbForWinLine, piece) {
     let yStartPosition = piece.y;
     let user = piece.user;
     let countPiece = 1;
-    let arrayOfWinPiece = [];
+    let arrayOfWinPiece = [piece];
     /** count to the bottom */
     for (let i = yStartPosition + 1; i < boardGame.length; i++) {
         let tamponPiece = boardGame[i][xStartPosition];

@@ -20,8 +20,13 @@ describe('---- Check diagonal align ----', function() {
         console.log(pieceToPlay);
         assert.equal(result.win, true);
         assert.equal(result.user, pieceToPlay.user);
-        assert.equal(result.countPieceTopLeft, 3);
-        assert.equal(result.countPieceTopRight, 2);
+        assert.equal(result.countPiece, 3);
+        let sizeFirst = result.winPiece.filter(obj => obj.x == 2 && obj.y == 3).length;
+        let sizeSecond = result.winPiece.filter(obj => obj.x == 3 && obj.y == 4).length;
+        let sizeThird = result.winPiece.filter(obj => obj.x == 1 && obj.y == 2).length;
+        assert.equal(sizeFirst,1);
+        assert.equal(sizeSecond,1);
+        assert.equal(sizeThird,1);
     });
 
     it('for 4 pieces to win, it should return false in win object', function() {
@@ -37,7 +42,6 @@ describe('---- Check diagonal align ----', function() {
         console.log(pieceToPlay);
         assert.equal(result.win, false);
         assert.equal(result.user, pieceToPlay.user);
-        assert.equal(result.countPieceTopLeft, 2);
-        assert.equal(result.countPieceTopRight, 1);
+        assert.equal(result.countPiece, 0);
     });
 });

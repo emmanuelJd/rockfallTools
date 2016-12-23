@@ -20,7 +20,7 @@ function checkHorizontal(boardGame, nbForWinLine, piece) {
     let yStartPosition = piece.y;
     let user = piece.user;
     let countPiece = 1;
-    let arrayOfWinPiece = [];
+    let arrayOfWinPiece = [piece];
     /** count to the right */
     for (let i = xStartPosition + 1; i < boardGame[0].length; i++) {
         let tamponPiece = boardGame[yStartPosition][i];
