@@ -21,9 +21,9 @@ describe('---- Check diagonal align ----', function() {
         assert.equal(result.win, true);
         assert.equal(result.user, pieceToPlay.user);
         assert.equal(result.countPiece, 3);
-        let sizeFirst = result.winPiece.filter(obj => obj.x == 2 && obj.y == 3).length;
-        let sizeSecond = result.winPiece.filter(obj => obj.x == 3 && obj.y == 4).length;
-        let sizeThird = result.winPiece.filter(obj => obj.x == 1 && obj.y == 2).length;
+        let sizeFirst = result.winPiece.filter(obj => obj.x == 2 && obj.y == 3 && obj.state == 3).length;
+        let sizeSecond = result.winPiece.filter(obj => obj.x == 3 && obj.y == 4 && obj.state == 3).length;
+        let sizeThird = result.winPiece.filter(obj => obj.x == 1 && obj.y == 2 && obj.state == 3).length;
         assert.equal(sizeFirst,1);
         assert.equal(sizeSecond,1);
         assert.equal(sizeThird,1);

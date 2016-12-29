@@ -55,7 +55,7 @@ function checkVertical(boardGame, nbForWinLine, piece) {
 
     if (nbForWinLine <= countPiece) {
         result.win = true;
-        result.winPiece = arrayOfWinPiece;
+        result.winPiece = arrayOfWinPiece.map(piece => piece.state = 3);
     }
     return result;
 }

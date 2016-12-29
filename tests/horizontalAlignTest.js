@@ -24,6 +24,7 @@ describe('---- Check horizontal align ----', function() {
         let winPiece = result.winPiece;
         for(let i = 0, length = winPiece.length; i < length;i++){
           assert.equal(winPiece[i].y, 1);
+          assert.equal(winPiece[i].state, 3);
         }
     });
 

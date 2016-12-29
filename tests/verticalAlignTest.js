@@ -21,9 +21,11 @@ describe('---- Check vertical align ----', function() {
         assert.equal(result.win, true);
         assert.equal(result.user, pieceToPlay.user);
         assert.equal(result.count, 5);
+
         let winPiece = result.winPiece;
         for(let i = 0, length = winPiece.length; i < length;i++){
           assert.equal(winPiece[i].x, 0);
+          assert.equal(winPiece[i].state, 3);
         }
     });
 
