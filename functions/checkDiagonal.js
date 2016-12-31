@@ -99,12 +99,14 @@ function checkDiagonal(boardGame, nbForWinLine, piece) {
     if (nbForWinLine <= countPieceTopRight) {
         result.win = true;
         result.countPiece = countPieceTopRight;
-        result.winPiece = arrayOfWinPieceRight.map(piece => piece.state = 3);
+        arrayOfWinPieceRight.forEach(function(piece) {piece.state = 3});
+        result.winPiece = arrayOfWinPieceRight;
     }
     if (nbForWinLine <= countPieceTopLeft && countPieceTopRight < countPieceTopLeft) {
         result.win = true;
         result.countPiece = countPieceTopLeft;
-        result.winPiece = arrayOfWinPieceLeft.map(piece => piece.state = 3);
+        arrayOfWinPieceLeft.forEach(function(piece){piece.state = 3})
+        result.winPiece = arrayOfWinPieceLeft;
     }
     return result;
 }

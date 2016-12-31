@@ -3,10 +3,11 @@
 var assert = require('assert');
 var plate = require('./_initialData');
 var applyPhysic = require('../functions/applyPhysic');
+
 describe('---- Check physic ----', function() {
+
     it('check piece physic, it should "fall" ', function() {
-        console.log("boardGame :");
-        console.log(plate.PlateVisu);
+
         let pieceToPlay = {
             "x": 2,
             "y": 1,
@@ -14,12 +15,12 @@ describe('---- Check physic ----', function() {
             "state": 0,
             "weight": 4
         };
-        assert.equal(plate.Plate[1][2].state, 0);
-        applyPhysic(plate.Plate, pieceToPlay);
-        console.log("Piece to start with : ");
-        console.log(pieceToPlay);
 
-        assert.equal(plate.Plate[1][2].state, 1);
+        let plateClone = JSON.parse(JSON.stringify(plate.Plate));
+
+        assert.equal(plateClone[1][2].state, 0);
+        applyPhysic(plateClone, pieceToPlay);
+        assert.equal(plateClone[1][2].state, 1);
 
     });
 
@@ -31,11 +32,10 @@ describe('---- Check physic ----', function() {
             "state": 0,
             "weight": 4
         };
-        applyPhysic(plate.Plate, pieceToPlay);
-        console.log("Piece to start with : ");
-        console.log(pieceToPlay);
+        let plateClone = JSON.parse(JSON.stringify(plate.Plate));
 
-        assert.equal(plate.Plate[3][1].state, 0);
+        applyPhysic(plateClone, pieceToPlay);
+        assert.equal(plateClone[3][1].state, 0);
 
     });
 });

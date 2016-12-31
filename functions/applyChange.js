@@ -1,37 +1,55 @@
 "use strict";
 
-var _ = require('underscore');
 /**
  * @param boardGame object with game information
  *
- * function to apply physic to a specific piece
+ * function to apply change to index piece
  */
 function applyChange(boardGame, indexPiece, users) {
 
     //verify input variable
-    if (!boardGame.length) throw new Error("Undefined boardGameOne!");
-    if (!boardGame[0].length) throw new Error("Undefined boardGameOne!");
+    if (!boardGame.length) throw new Error("Undefined boardGame!");
+    if (!boardGame[0].length) throw new Error("Undefined boardGame!");
 
-    for (let i = 0, boardGameLength = boardGame.length; i < boardGameLength; i++) {
-        for (let j = 0, boardGameRowLength = boardGameOne[0].length; j < boardGameRowLength; j++) {
-            switch( boardGame[i][j].state ) {
-              case 1: boardGame[i+1][j] = Object.assign({}, boardGame[i][j]);
-                      boardGame[i][j] = 0;
-                      break;
+    let indexPieceTampon =  indexPiece;
 
-              case 2: users[boardGame[i][j].user].point += boardGame[i][j].weight;
-                      boardGame[i][j].state = 4;
-                      break;
+    for (let i = 0, indexLength = indexPiece.length; i < indexLength; i++) {
+        let piece = indexPiece[i];
+        let x = piece.x;
+        let y = piece.y;
 
-              case 3: users[boardGame[i][j].user].point += boardGame[i][j].weight
-                      boardGame[i][j].state = 4;
-                      break;
+        switch (piece.state) {
+            case 1:
+                boardGame[y + 1][x] = boardGame[y][x];
+                boardGame[y][x].y++;
+                boardGame[y][x] = 0;
+                piece.y++;
+                break;
 
-              case 4: boardGame[i][j] = 0;
-                      break;
-            }
+            case 2:
+                users[boardGame[y][x].user].point += boardGame[y][x].weight;
+                boardGame[y][x].state = 4;
+                piece.state = 4;
+                break;
+
+            case 3:
+                users[boardGame[y][x].user].point += boardGame[y][x].weight
+                boardGame[y][x].state = 4;
+                piece.state = 4;
+                break;
+
+            case 4:
+                boardGame[y][x] = 0;
+                indexPieceTampon = indexPieceTampon.filter(item => item != piece);
+                break;
+
+            default:
+                indexPieceTampon = indexPieceTampon.filter(item => item != piece);
+                break;
         }
     }
+
+    return indexPieceTampon;
 }
 
 module.exports = applyChange;

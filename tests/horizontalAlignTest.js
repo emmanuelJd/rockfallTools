@@ -5,8 +5,7 @@ var plate = require('./_initialData');
 var checkHorizontal = require('../functions/checkHorizontal');
 
 describe('---- Check horizontal align ----', function() {
-    console.log("boardGame :");
-    console.log(plate.PlateVisu);
+
     it('for 4 pieces to win, it should return true in win object', function() {
         let pieceToWin = 4,
             pieceToPlay = {
@@ -15,9 +14,6 @@ describe('---- Check horizontal align ----', function() {
                 user: 1
             };
         let result = checkHorizontal(plate.Plate, pieceToWin, pieceToPlay);
-        console.log("Number of align piece to win : " + pieceToWin);
-        console.log("Piece to start with : ");
-        console.log(pieceToPlay);
         assert.equal(result.win, true);
         assert.equal(result.user, pieceToPlay.user);
         assert.equal(result.count, 4);
@@ -36,9 +32,6 @@ describe('---- Check horizontal align ----', function() {
                 user: 2
             };
         let result = checkHorizontal(plate.Plate, pieceToWin, pieceToPlay);
-        console.log("Number of align piece to win : " + pieceToWin);
-        console.log("Piece to start with : ");
-        console.log(pieceToPlay);
         assert.equal(result.win, false);
         assert.equal(result.user, pieceToPlay.user);
         assert.equal(result.count, 3);

@@ -10,7 +10,7 @@ var Plate = [
   [{"id":1, "x":0, "y":0, "user":1, "state":0, "weight": 4}, 0, 0, 0, 0],
   [{"id":2, "x":0, "y":1, "user":1, "state":0, "weight": 4}, {"id":3, "x":1, "y":1, "user":1, "state":0, "weight": 4}, {"id":4, "x":2, "y":1, "user":1, "state":0, "weight": 4}, {"id":5, "x":3, "y":1, "user":1, "state":0, "weight": 4}, {"id":6, "x":4, "y":1, "user":2, "state":0, "weight": 4}],
   [{"id":7, "x":0, "y":2, "user":1, "state":0, "weight": 4}, {"id":8, "x":1, "y":2, "user":2, "state":0, "weight": 4}, 0, 0, 0],
-  [{"id":9, "x":0, "y":3, "user":1, "state":0, "weight": 4}, {"id":10, "x":1, "y":3, "user":2, "state":0, "weight": 4}, {"id":11, "x":2, "y":3, "user":2, "state":0, "weight": 4}, 0, {"id":12, "x":4, "y":3, "user":1, "state":0, "weight": 4}],
+  [{"id":9, "x":0, "y":3, "user":1, "state":0, "weight": 4}, {"id":10, "x":1, "y":3, "user":2, "state":0, "weight": 4}, {"id":11, "x":2, "y":3, "user":2, "state":0, "weight": 4}, 0, {"id":12, "x":4, "y":3, "user":1, "state":1, "weight": 4}],
   [{"id":13, "x":0, "y":4, "user":1, "state":0, "weight": 4}, {"id":14, "x":1, "y":4, "user":2, "state":0, "weight": 4}, {"id":15, "x":2, "y":4, "user":2, "state":0, "weight": 4}, {"id":16, "x":3, "y":4, "user":2, "state":0, "weight": 4}, 0],
 ];
 
