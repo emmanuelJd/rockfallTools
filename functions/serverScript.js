@@ -2,11 +2,11 @@
 * game rule is scheduling by this function
 * first apply physic until all piece are not moving then
 * apply weight on piece to delete all deny piece if a deleted piece is met then redo old instruction
-*
+* apply verification on marked piece
 *
 */
 
-function applyRule(indexPiece, users) {
+function applyRule(boardGame, indexPiece, users) {
 
     //index of moving piece
     let movingPiece = [];
