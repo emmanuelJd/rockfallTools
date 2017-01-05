@@ -27,7 +27,6 @@ function applyWeight(boardGame, piece) {
             }
         }
     }
-    console.log(sumWeightPiece + " > " +pieceWeight * 2);
     if (sumWeightPiece > pieceWeight * 2) {
         boardGame[yStartPosition][xStartPosition].state = 2;
     }

@@ -24,6 +24,7 @@ function applyChange(boardGame, indexPiece, users) {
                 boardGame[y][x].y++;
                 boardGame[y][x] = 0;
                 piece.y++;
+                piece.state = 0;
                 break;
 
             case 2:
