@@ -1,3 +1,11 @@
+"use strict";
+
+var applyPhysic = require('../functions/applyPhysic');
+var applyWeight = require('../functions/applyWeight');
+var checkHorizontal = require('../functions/checkHorizontal');
+var checkVertical = require('../functions/checkVertical');
+var checkDiagonal = require('../functions/checkDiagonal');
+
 /**
 * game rule is scheduling by this function
 * first apply physic until all piece are not moving then

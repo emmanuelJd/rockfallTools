@@ -7,28 +7,31 @@ var _ = require('underscore');
 class UsersFonction {
 
     /* function to pick next player*/
-    static getNextUserToPlay(users) {
-        if(users.length <= 1) throw new Error("need a least two user");
+    static getNextUserToPlay(users, rules) {
+        if (users.length <= 1) throw new Error("need a least two user");
         if (users.filter(user => user.order == 0).length != 0) throw new Error("All user need to have an order");
 
         let filterUser = users.filter(user => user.turn == 1);
-        users.sort((pieceA, pieceB) => pieceA.order - pieceB .order);
+        users.sort((pieceA, pieceB) => pieceA.order - pieceB.order);
         //let startToPlay = filterUser.length;
-        let userOneTurn =  users[0];
+        let userOneTurn = users[0];
         //console.log(filterUser);
         if (filterUser.length == 0) {
             userOneTurn.turn = 1;
+            userOneTurn.pieceAction = userOneTurn.pieceActionPerTurn;
         } else if (filterUser.length == 1) {
             if (filterUser[0].order == users.length) {
                 userOneTurn.turn = 1;
+                userOneTurn.pieceAction = userOneTurn.pieceActionPerTurn;
                 filterUser[0].turn = 0;
             } else {
                 filterUser[0].turn = 0;
                 let nextPlayer = users.filter(user => user.order == filterUser[0].order + 1);
-                if(nextPlayer.length != 1){
+                if (nextPlayer.length != 1) {
                     throw new Error("Only one next player");
                 }
                 nextPlayer[0].turn = 1;
+                nextPlayer[0].pieceAction = nextPlayer[0].pieceActionPerTurn;
             }
         } else {
             throw new Error("Only one user with turn at 1");
