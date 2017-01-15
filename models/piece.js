@@ -20,6 +20,12 @@ class Piece {
         return x;
     }
 
+    static pieceValidation(pieceToValidate) {
+        if (!pieceToValidate.hasOwnProperty("x") || !pieceToValidate.hasOwnProperty("y") || !pieceToValidate.hasOwnProperty("id") || !pieceToValidate.hasOwnProperty("user") || !pieceToValidate.hasOwnProperty("weight") || !pieceToValidate.hasOwnProperty("state")) {
+            throw new Error("not a valide piece!");
+        }
+    }
+
 }
 
 module.exports = Piece;

@@ -15,9 +15,9 @@ var Plate = [
 ];
 
 var Users = [
-  {"id":1, "name":1, "order":0, "turn":1, "point":0, "pieceAction":1, "pieceActionPerTurn":1},
-  {"id":2, "name":2, "order":0, "turn":1, "point":0, "pieceAction":0, "pieceActionPerTurn":1},
-  {"id":3, "name":3, "order":0, "turn":0, "point":0, "pieceAction":1, "pieceActionPerTurn":1}
+  {"id":1, "name":1, "order":0, "turn":1, "point":0, "pieceAction":1, "pieceActionPerTurn":1, "weightPiece":[5, 10, 15]},
+  {"id":2, "name":2, "order":0, "turn":1, "point":0, "pieceAction":0, "pieceActionPerTurn":1, "weightPiece":[2, 8, 20]},
+  {"id":3, "name":3, "order":0, "turn":0, "point":0, "pieceAction":1, "pieceActionPerTurn":1, "weightPiece":[5, 10, 15]}
 ];
 
 module.exports = {

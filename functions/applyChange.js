@@ -21,9 +21,9 @@ function applyChange(boardGame, indexPiece, users) {
         switch (piece.state) {
             case 1:
                 boardGame[y + 1][x] = boardGame[y][x];
-                boardGame[y][x].y++;
+                boardGame[y + 1][x].y++;
                 boardGame[y][x] = 0;
-                piece.y++;
+                //piece.y++;
                 piece.state = 0;
                 break;
 
@@ -45,11 +45,11 @@ function applyChange(boardGame, indexPiece, users) {
                 break;
 
             default:
-                indexPieceTampon = indexPieceTampon.filter(item => item != piece);
+                //indexPieceTampon = indexPieceTampon.filter(item => item != piece);
                 break;
         }
     }
-
+    //console.log(boardGame);
     return indexPieceTampon;
 }
 
