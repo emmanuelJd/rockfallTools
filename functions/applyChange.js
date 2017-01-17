@@ -28,7 +28,9 @@ function applyChange(boardGame, indexPiece, users) {
                 break;
 
             case 2:
-                users[boardGame[y][x].user].point += boardGame[y][x].weight;
+                let userPoint = users.find(user => user.id === boardGame[y][x].user);
+                userPoint.point += boardGame[y][x].weight;
+                //users[boardGame[y][x].user].point += boardGame[y][x].weight;
                 boardGame[y][x].state = 4;
                 piece.state = 4;
                 break;

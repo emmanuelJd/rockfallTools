@@ -1,3 +1,4 @@
+"use strict";
 
 let UsersFonction = require('../functions/usersFunction');
 let addPieceScript = require('../functions/addPieceScript');
@@ -41,7 +42,7 @@ describe('---- Script some plays ----', function () {
 
         //first player add a piece
         let firstUser = usersTest.find(user => user.order == 1);
-        let piece = { "id": 1, "x": 0, "y": 0, "state": 0, "weight": firstUser.weightPiece[0], "user": firstUser.id }; 
+        let piece = { "id": 1, "x": 0, "y": 0, "state": 0, "weight": firstUser.weightPiece[0], "user": firstUser.id };
         //console.log(piece);
         //console.log(firstUser);
         addPieceScript(boardGameTest, indexPieceTest, piece, firstUser);
@@ -55,7 +56,7 @@ describe('---- Script some plays ----', function () {
 
         //first player add a piece
         firstUser = usersTest.find(user => user.order == 2);
-        piece = { "id": 2, "x": 0, "y": 0, "state": 0, "weight": firstUser.weightPiece[0], "user": firstUser.id }; 
+        piece = { "id": 2, "x": 0, "y": 0, "state": 0, "weight": firstUser.weightPiece[0], "user": firstUser.id };
         //console.log(piece);
         //console.log(firstUser);
         addPieceScript(boardGameTest, indexPieceTest, piece, firstUser);
