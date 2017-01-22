@@ -17,9 +17,6 @@ var checkDiagonal = require('../functions/checkDiagonal');
 
 function applyRule(boardGame, indexPiece, users, gameRules) {
 
-    //index of moving piece
-    let movingPiece = [];
-
     let triggeredPhysic = false,
         triggeredWeight = false,
         triggeredHorizontalCheck = false,
@@ -27,24 +24,27 @@ function applyRule(boardGame, indexPiece, users, gameRules) {
         triggeredDiagonalCheck = false;
 
     do {
+        console.log(indexPiece);
         //order list of piece to start bottom to top
-        indexPiece = indexPiece.sort((pieceA, pieceB) => pieceB.y - pieceA.y);
+        indexPiece = indexPiece.sort((pieceA, pieceB) => pieceA.y - pieceB.y);
 
         //apply physic to all piece and mark moving piece
         indexPiece.map(piece => applyPhysic(boardGame, piece));//.
         triggeredPhysic = indexPiece.reduce((mergedValue, piece) => piece.state == 1 ? (mergedValue || true) : (mergedValue || false), false);
         if (triggeredPhysic) {
+            //console.log("FIRST");
             indexPiece = applyChange(boardGame, indexPiece, users);
         }
         //if physic not complete reapply physic
 
         //apply weigth for all piece
         if (!triggeredPhysic) {
-            console.log("INDEXPIECE");
-            console.log(indexPiece);
+            // console.log("INDEXPIECE");
+            // console.log(indexPiece);
             indexPiece.map(piece => applyWeight(boardGame, piece));//.reduce((mergedValue, piece) => piece.state == 2 ? (mergedValue || true) : (mergedValue || false), false);
             triggeredWeight = indexPiece.reduce((mergedValue, piece) => piece.state == 2 ? (mergedValue || true) : (mergedValue || false), false);
             if (triggeredWeight) {
+                //console.log("SECOND");
                 indexPiece = applyChange(boardGame, indexPiece, users);
             }
             //apply change
@@ -56,6 +56,7 @@ function applyRule(boardGame, indexPiece, users, gameRules) {
             indexPiece.map(piece => checkHorizontal(boardGame, gameRules.nbForWinLine, piece));//.reduce((mergedValue, piece) => piece.state == 3 ? (mergedValue || true) : (mergedValue || false), false);
             triggeredHorizontalCheck = indexPiece.reduce((mergedValue, piece) => piece.state == 3 ? (mergedValue || true) : (mergedValue || false), false);
             if (triggeredHorizontalCheck) {
+                //console.log("THIRD");
                 indexPiece = applyChange(boardGame, indexPiece, users);
             }
             //apply change
@@ -63,6 +64,7 @@ function applyRule(boardGame, indexPiece, users, gameRules) {
                 indexPiece.map(piece => checkVertical(boardGame, gameRules.nbForWinLine, piece))//.reduce((mergedValue, piece) => piece.state == 3 ? (mergedValue || true) : (mergedValue || false), false);
                 triggeredVerticalCheck = indexPiece.reduce((mergedValue, piece) => piece.state == 3 ? (mergedValue || true) : (mergedValue || false), false);
                 if (triggeredVerticalCheck) {
+                    //console.log("FOUR");
                     indexPiece = applyChange(boardGame, indexPiece, users);
                 }
                 //apply change
@@ -72,20 +74,27 @@ function applyRule(boardGame, indexPiece, users, gameRules) {
                 indexPiece.map(piece => checkDiagonal(boardGame, gameRules.nbForWinLine, piece));//.reduce((mergedValue, piece) => piece.state == 3 ? (mergedValue || true) : (mergedValue || false), false);
                 triggeredDiagonalCheck = indexPiece.reduce((mergedValue, piece) => piece.state == 3 ? (mergedValue || true) : (mergedValue || false), false);
                 if (triggeredDiagonalCheck) {
+                    //console.log("FIVE");
                    indexPiece = applyChange(boardGame, indexPiece, users);
                 }
                 //apply change
             }
             //if a piece triggered weight reapply
         }
-        console.log("---START-----");
-        console.log("Physic : "+triggeredPhysic);
-        console.log("Weight : "+triggeredWeight);
-        console.log("horizontal : "+triggeredHorizontalCheck);
-        console.log("vertical : "+triggeredVerticalCheck);
-        console.log("diagonal : "+triggeredDiagonalCheck);
-        console.log(boardGame);
-        console.log("----END------");
+// console.log("SIX");
+//         indexPiece = applyChange(boardGame, indexPiece, users);
+//         console.log("---START-----");
+//         console.log("Physic : "+triggeredPhysic);
+//         console.log("Weight : "+triggeredWeight);
+//         console.log("horizontal : "+triggeredHorizontalCheck);
+//         console.log("vertical : "+triggeredVerticalCheck);
+//         console.log("diagonal : "+triggeredDiagonalCheck);
+//         console.log("BoardGame");
+//         console.log(boardGame);
+//         console.log("");
+//         console.log("IndexPiece");
+//         console.log(indexPiece);
+//         console.log("----END------");
         
     } while (triggeredPhysic || triggeredWeight || triggeredHorizontalCheck || triggeredVerticalCheck || triggeredDiagonalCheck);
     //if check triggered reapply physic

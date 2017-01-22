@@ -17,23 +17,29 @@ function applyWeight(boardGame, piece) {
     let yStartPosition = piece.y;
     let pieceWeight = piece.weight;
     let sumWeightPiece = 0;
-    console.log("------START WEIGHT CHECK------");
-    for (let i = yStartPosition - 1; i >= 0; i--) {
-        if (i >= 0) {
-            let tamponPiece = boardGame[i][xStartPosition];
-            if (tamponPiece != 0) {
-                sumWeightPiece += tamponPiece.weight;
-            } else {
-                break;
+    if (piece.state == 0) {
+        //console.log("------START WEIGHT CHECK------");
+
+        for (let i = yStartPosition - 1; i >= 0; i--) {
+            if (i >= 0) {
+                let tamponPiece = boardGame[i][xStartPosition];
+                if (tamponPiece != 0) {
+                    sumWeightPiece += tamponPiece.weight;
+                } else {
+                    break;
+                }
             }
         }
+        //console.log(sumWeightPiece);
+        //console.log(pieceWeight * 2);
+        if (sumWeightPiece > pieceWeight * 2) {
+            //boardGame[yStartPosition][xStartPosition].state = 2;
+            //console.log(boardGame[yStartPosition][xStartPosition]);
+            //console.log(piece);
+            piece.state = 2;
+        }
+        //console.log("------END WEIGHT CHECK------");
     }
-    console.log(sumWeightPiece);
-    console.log(pieceWeight * 2);
-    if (sumWeightPiece > pieceWeight * 2) {
-        boardGame[yStartPosition][xStartPosition].state = 2;
-    }
-    console.log("------END WEIGHT CHECK------");
 }
 
 module.exports = applyWeight;
