@@ -61,7 +61,7 @@ function applyChange(boardGame, indexPiece, users) {
         }
     }
     //console.log(boardGame);
-    return Object.assign([],indexPieceTampon);
+    return indexPieceTampon;
 }
 
 module.exports = applyChange;

@@ -4,9 +4,9 @@ let UsersFonction = require('../functions/usersFunction');
 let addPieceScript = require('../functions/addPieceScript');
 let applyRule = require('../functions/applyRule');
 
-describe('---- Script some plays ----', function () {
+//describe('---- Script some plays ----', function () {
 
-    it(' start simulation Horizontal Win', function () {
+    //it(' start simulation Horizontal Win', function () {
 
         //initialization game variable
 
@@ -67,7 +67,7 @@ describe('---- Script some plays ----', function () {
         firstUser = usersTest.find(user => user.turn == 1);
         piece = { "id": 4, "x": 1, "y": 0, "state": 0, "weight": firstUser.weightPiece[0], "user": firstUser.id };
         addPieceScript(boardGameTest, indexPieceTest, piece, firstUser);
-        applyRule(boardGameTest, indexPieceTest, usersTest, gameRules);
+        let er = applyRule(boardGameTest, indexPieceTest, usersTest, gameRules);
         console.log("FOUR");
         console.log(indexPieceTest);
 
@@ -147,6 +147,6 @@ describe('---- Script some plays ----', function () {
     //     //Horizontal win
     //     console.log("END SCRIPT");
     //     usersTest.map(user => console.log(user));
-    });
+    //});
 
-});
+//});
