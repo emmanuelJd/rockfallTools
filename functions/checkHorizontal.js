@@ -25,9 +25,11 @@ function checkHorizontal(boardGame, nbForWinLine, piece) {
     for (let i = xStartPosition + 1; i < boardGame[0].length; i++) {
         let tamponPiece = boardGame[yStartPosition][i];
         if (tamponPiece != 0) {
-            if (tamponPiece.user == user) {
+            if (tamponPiece.user == user && tamponPiece.state == 0) {
                 countPiece++;
                 arrayOfWinPiece.push(tamponPiece);
+            }else{
+                break;
             }
         } else {
             break;
@@ -38,9 +40,11 @@ function checkHorizontal(boardGame, nbForWinLine, piece) {
     for (let i = xStartPosition - 1; i >= 0; i--) {
         let tamponPiece = boardGame[yStartPosition][i];
         if (tamponPiece != 0) {
-            if (tamponPiece.user == user) {
+            if (tamponPiece.user == user && tamponPiece.state == 0) {
                 countPiece++;
                 arrayOfWinPiece.push(tamponPiece);
+            }else{
+                break;
             }
         } else {
             break;
@@ -52,7 +56,7 @@ function checkHorizontal(boardGame, nbForWinLine, piece) {
         "win": false,
         "winPiece": []
     };
-    if (nbForWinLine <= countPiece) {
+    if (countPiece >= nbForWinLine) {
         result.win = true;
         arrayOfWinPiece.forEach(function(piece) {piece.state = 3});
         result.winPiece = arrayOfWinPiece;

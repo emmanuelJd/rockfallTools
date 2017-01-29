@@ -39,7 +39,7 @@ function checkDiagonal(boardGame, nbForWinLine, piece) {
         if (yStartPosition - verticalAjust >= 0 && !stopCountTopRight) {
             let tamponPieceTopRight = boardGame[yStartPosition - verticalAjust][i];
             if (tamponPieceTopRight != 0) {
-                if (tamponPieceTopRight.user == user) {
+                if (tamponPieceTopRight.user == user && tamponPieceTopRight.state == 0) {
                     countPieceTopRight++;
                     arrayOfWinPieceRight.push(tamponPieceTopRight);
                 }
@@ -50,7 +50,7 @@ function checkDiagonal(boardGame, nbForWinLine, piece) {
         if (yStartPosition + verticalAjust < boardGame.length && !stopCountTopLeft) {
             let tamponPieceBottomRight = boardGame[yStartPosition + verticalAjust][i];
             if (tamponPieceBottomRight != 0) {
-                if (tamponPieceBottomRight.user == user) {
+                if (tamponPieceBottomRight.user == user && tamponPieceBottomRight.state == 0) {
                     countPieceTopLeft++;
                     arrayOfWinPieceLeft.push(tamponPieceBottomRight);
                 }
@@ -68,7 +68,7 @@ function checkDiagonal(boardGame, nbForWinLine, piece) {
         if (yStartPosition - verticalAjust >= 0) {
             let tamponPieceTopLeft = boardGame[yStartPosition - verticalAjust][i];
             if (tamponPieceTopLeft != 0) {
-                if (tamponPieceTopLeft.user == user) {
+                if (tamponPieceTopLeft.user == user && tamponPieceTopLeft.state == 0) {
                     countPieceTopLeft++;
                     arrayOfWinPieceLeft.push(tamponPieceTopLeft);
                 }
@@ -79,7 +79,7 @@ function checkDiagonal(boardGame, nbForWinLine, piece) {
         if (yStartPosition + verticalAjust < boardGame.length) {
             let tamponPieceBottomLeft = boardGame[yStartPosition + verticalAjust][i];
             if (tamponPieceBottomLeft != 0) {
-                if (tamponPieceBottomLeft.user == user) {
+                if (tamponPieceBottomLeft.user == user && tamponPieceBottomLeft.state == 0) {
                     countPieceTopRight++;
                     arrayOfWinPieceRight.push(tamponPieceBottomLeft);
                 }
@@ -96,13 +96,13 @@ function checkDiagonal(boardGame, nbForWinLine, piece) {
         "win": false,
         "winPiece": []
     };
-    if (nbForWinLine <= countPieceTopRight) {
+    if (countPieceTopRight >= nbForWinLine) {
         result.win = true;
         result.countPiece = countPieceTopRight;
         arrayOfWinPieceRight.forEach(function(piece) {piece.state = 3});
         result.winPiece = arrayOfWinPieceRight;
     }
-    if (nbForWinLine <= countPieceTopLeft && countPieceTopRight < countPieceTopLeft) {
+    if (countPieceTopRight >= nbForWinLine && countPieceTopRight < countPieceTopLeft) {
         result.win = true;
         result.countPiece = countPieceTopLeft;
         arrayOfWinPieceLeft.forEach(function(piece){piece.state = 3})

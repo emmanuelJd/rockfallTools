@@ -29,88 +29,50 @@ function applyRule(boardGame, indexPiece, users, gameRules) {
         //order list of piece to start bottom to top
         indexPiece = indexPiece.sort((pieceA, pieceB) => pieceB.y - pieceA.y);
 
- console.log(indexPiece);
-
         //apply physic to all piece and mark moving piece
-        indexPiece.map(piece => applyPhysic(boardGame, piece));//.
+        indexPiece.map(piece => applyPhysic(boardGame, piece));
         triggeredPhysic = indexPiece.reduce((mergedValue, piece) => piece.state == 1 ? (mergedValue || true) : (mergedValue || false), false);
-       /* if (triggeredPhysic) {
-            //console.log("FIRST");
-            indexPiece = applyChange(boardGame, indexPiece, users);
-        }*/
-        //if physic not complete reapply physic
 
-        //apply weigth for all piece
         if (!triggeredPhysic) {
-            // console.log("INDEXPIECE");
-            // console.log(indexPiece);
-            indexPiece.map(piece => applyWeight(boardGame, piece));//.reduce((mergedValue, piece) => piece.state == 2 ? (mergedValue || true) : (mergedValue || false), false);
+            indexPiece.map(piece => applyWeight(boardGame, piece));
             triggeredWeight = indexPiece.reduce((mergedValue, piece) => piece.state == 2 ? (mergedValue || true) : (mergedValue || false), false);
-           /* if (triggeredWeight) {
-                //console.log("SECOND");
-                indexPiece = applyChange(boardGame, indexPiece, users);
-            }*/
-            //apply change
-            //if a piece triggered weight reapply
         }
 
         //foreach marked piece check horizontal/vertical/diagonal
         if (!triggeredPhysic && !triggeredWeight) {
-            indexPiece.map(piece => checkHorizontal(boardGame, gameRules.nbForWinLine, piece));//.reduce((mergedValue, piece) => piece.state == 3 ? (mergedValue || true) : (mergedValue || false), false);
-            triggeredHorizontalCheck = indexPiece.reduce((mergedValue, piece) => piece.state == 3 ? (mergedValue || true) : (mergedValue || false), false);
-            /*if (triggeredHorizontalCheck) {
-                //console.log("THIRD");
-                indexPiece = applyChange(boardGame, indexPiece, users);
-            }*/
-            //apply change
+            let indiceArray = 0, indexPieceLength = indexPiece.length;
+            triggeredHorizontalCheck = false;
+            while (!triggeredHorizontalCheck && indiceArray < indexPieceLength) {
+                triggeredHorizontalCheck = checkHorizontal(boardGame, gameRules.nbForWinLine, indexPiece[indiceArray]).win;
+                indiceArray++;
+            }
             if (!triggeredHorizontalCheck) {
-                indexPiece.map(piece => checkVertical(boardGame, gameRules.nbForWinLine, piece))//.reduce((mergedValue, piece) => piece.state == 3 ? (mergedValue || true) : (mergedValue || false), false);
-                triggeredVerticalCheck = indexPiece.reduce((mergedValue, piece) => piece.state == 3 ? (mergedValue || true) : (mergedValue || false), false);
-                /*if (triggeredVerticalCheck) {
-                    //console.log("FOUR");
-                    indexPiece = applyChange(boardGame, indexPiece, users);
-                }*/
-                //apply change
+                indiceArray = 0;
+                triggeredVerticalCheck = false;
+                while (!triggeredVerticalCheck && indiceArray < indexPieceLength) {
+                    triggeredVerticalCheck = checkVertical(boardGame, gameRules.nbForWinLine, indexPiece[indiceArray]).win;
+                    indiceArray++;
+                }
             }
-
             if (!triggeredHorizontalCheck && !triggeredVerticalCheck) {
-                indexPiece.map(piece => checkDiagonal(boardGame, gameRules.nbForWinLine, piece));//.reduce((mergedValue, piece) => piece.state == 3 ? (mergedValue || true) : (mergedValue || false), false);
-                triggeredDiagonalCheck = indexPiece.reduce((mergedValue, piece) => piece.state == 3 ? (mergedValue || true) : (mergedValue || false), false);
-                /*if (triggeredDiagonalCheck) {
-                    //console.log("FIVE");
-                   indexPiece = applyChange(boardGame, indexPiece, users);
-                }*/
-                //apply change
+                indiceArray = 0;
+                triggeredDiagonalCheck = false;
+                while (!triggeredDiagonalCheck && indiceArray < indexPieceLength) {
+                    triggeredDiagonalCheck = checkDiagonal(boardGame, gameRules.nbForWinLine, indexPiece[indiceArray]).win;
+                    indiceArray++;
+                }
             }
-            //if a piece triggered weight reapply
         }
-
-// check if all piece have been apply
+        // check if all piece have been apply
         triggeredAllPieceDestroy = indexPiece.reduce((mergedValue, piece) => piece.state == 4 ? (mergedValue || true) : (mergedValue || false), false);
         if (triggeredPhysic || triggeredWeight || triggeredHorizontalCheck || triggeredVerticalCheck || triggeredDiagonalCheck || triggeredAllPieceDestroy) {
-            //console.log("FIRST");
             indexPiece = applyChange(boardGame, indexPiece, users);
-        }else{
+        } else {
             canIPass = true
         }
-// console.log("SIX");
-//         indexPiece = applyChange(boardGame, indexPiece, users);
-//         console.log("---START-----");
-//         console.log("Physic : "+triggeredPhysic);
-//         console.log("Weight : "+triggeredWeight);
-//         console.log("horizontal : "+triggeredHorizontalCheck);
-//         console.log("vertical : "+triggeredVerticalCheck);
-//         console.log("diagonal : "+triggeredDiagonalCheck);
-//         console.log("BoardGame");
-//         console.log(boardGame);
-//         console.log("");
-//         console.log("IndexPiece");
-//         console.log(indexPiece);
-//         console.log("----END------");
-        
+
     } while (!canIPass);
-    //if check triggered reapply physic
-    // triggeredPhysic, triggeredWeight, triggeredHorizontalCheck
+
     return indexPiece;
 }
 

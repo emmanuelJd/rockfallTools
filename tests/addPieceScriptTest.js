@@ -27,7 +27,7 @@ describe('---- add piece to party ----', function () {
             [0, 0, 0, 0, 0, 0]
         ];
 
-        let userToTest = Object.assign({},plate.Users[0])
+        let userToTest = Object.assign({}, plate.Users[0])
 
         assert.equal(0, indexPiece.length);
         assert.equal(1, plate.Users[0].pieceAction);
@@ -39,7 +39,7 @@ describe('---- add piece to party ----', function () {
 
     });
 
-    it(' add a piece to the game should failed, because user can\'t play' , function () {
+    it(' add a piece to the game should failed, because user can\'t play', function () {
 
         let indexPiece = [],
             piece = {
@@ -59,7 +59,7 @@ describe('---- add piece to party ----', function () {
             [0, 0, 0, 0, 0, 0]
         ];
 
-let userToTest = Object.assign({},plate.Users[1])
+        let userToTest = Object.assign({}, plate.Users[1])
 
         assert.equal(0, indexPiece.length);
         addPieceScript(plateToAddPiece, indexPiece, piece, userToTest);
@@ -88,7 +88,7 @@ let userToTest = Object.assign({},plate.Users[1])
             [0, 0, 0, 0, 0, 0]
         ];
 
-let userToTest = Object.assign({},plate.Users[0])
+        let userToTest = Object.assign({}, plate.Users[0])
 
 
         assert.equal(0, indexPiece.length);
@@ -117,7 +117,7 @@ let userToTest = Object.assign({},plate.Users[0])
             [0, 0, 0, 0, 0, 0]
         ];
 
-let userToTest = Object.assign({},plate.Users[2])
+        let userToTest = Object.assign({}, plate.Users[2])
 
         assert.equal(0, indexPiece.length);
         addPieceScript(plateToAddPiece, indexPiece, piece, userToTest);
@@ -126,7 +126,7 @@ let userToTest = Object.assign({},plate.Users[2])
     });
 
 
-it(' add a piece to the game should failed, because piece weight doesn\'t match user weight capability!', function () {
+    it(' add a piece to the game should failed, because piece weight doesn\'t match user weight capability!', function () {
 
         let indexPiece = [],
             piece = {
@@ -145,7 +145,7 @@ it(' add a piece to the game should failed, because piece weight doesn\'t match 
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0]
         ];
-let userToTest = Object.assign({},plate.Users[0])
+        let userToTest = Object.assign({}, plate.Users[0])
 
         assert.equal(0, indexPiece.length);
         addPieceScript(plateToAddPiece, indexPiece, piece, userToTest);
