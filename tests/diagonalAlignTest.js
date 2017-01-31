@@ -9,11 +9,18 @@ describe('---- Check diagonal align ----', function() {
     it('for 4 pieces to win, it should return true in win object', function() {
         let pieceToWin = 3,
             pieceToPlay = {
-                x: 2,
-                y: 3,
-                user: 2
+                "id": 11,
+                "x": 2,
+                "y": 3,
+                "user": 2,
+                "state": 0,
+                "weight": 4
             };
-        let result = checkDiagonal(plate.Plate, pieceToWin, pieceToPlay);
+
+        let plateClone = JSON.parse(JSON.stringify(plate.Plate));
+        plateClone[3][2] = pieceToPlay;
+        
+        let result = checkDiagonal(plateClone, pieceToWin, pieceToPlay);
 
         assert.equal(result.win, true);
         assert.equal(result.user, pieceToPlay.user);
@@ -30,11 +37,16 @@ describe('---- Check diagonal align ----', function() {
     it('for 4 pieces to win, it should return false in win object', function() {
         let pieceToWin = 3,
             pieceToPlay = {
-                x: 2,
-                y: 4,
-                user: 2
+                "id": 15,
+                "x": 2,
+                "y": 4,
+                "user": 2,
+                "state": 0,
+                "weight": 4
             };
-        let result = checkDiagonal(plate.Plate, pieceToWin, pieceToPlay);
+        let plateClone = JSON.parse(JSON.stringify(plate.Plate));
+        plateClone[4][2] = pieceToPlay;
+        let result = checkDiagonal(plateClone, pieceToWin, pieceToPlay);
 
         assert.equal(result.win, false);
         assert.equal(result.user, pieceToPlay.user);

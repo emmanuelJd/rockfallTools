@@ -34,7 +34,7 @@ describe('---- Script some plays ----', function () {
         //game rules
         let gameRules = {
             //number of align piece to win
-            "nbForWinLine":4
+            "nbForWinLine":3
         };
 
         //1 - First player : {x:0, weight:5}
@@ -106,7 +106,7 @@ describe('---- Script some plays ----', function () {
         piece = { "id": 8, "x": 3, "y": 0, "state": 0, "weight": firstUser.weightPiece[1], "user": firstUser.id };
         addPieceScript(boardGameTest, indexPieceTest, piece, firstUser);
         indexPieceTest = applyRule(boardGameTest, indexPieceTest, usersTest, gameRules);
-
+    
         //assert remain piece
         assert.equal(boardGameTest[4][0].id, 1);
         assert.equal(boardGameTest[4][1].id, 7);

@@ -4,26 +4,29 @@ var assert = require('assert');
 var plate = require('./_initialData');
 var applyWeight = require('../functions/applyWeight');
 
-describe('---- Check weight ----', function() {
+describe('---- Check weight ----', function () {
 
-    it('check piece physic, it should "fall" ', function() {
+    it('check piece Weight, it should be tag overweight!', function () {
 
         let pieceToPlay = {
+            "id": 13,
             "x": 1,
             "y": 4,
             "user": 2,
             "state": 0,
             "weight": 4
         };
-      let plateClone = JSON.parse(JSON.stringify(plate.Plate));
+        let plateClone = JSON.parse(JSON.stringify(plate.Plate));
+        plateClone[4][1] = pieceToPlay;
         assert.equal(plateClone[4][1].state, 0);
         applyWeight(plateClone, pieceToPlay);
         assert.equal(plateClone[4][1].state, 2);
 
     });
 
-    it('check piece physic, it shouldn\'t "fall" ', function() {
+    it('check piece physic, it shouldn\'t be tag overweight!', function () {
         let pieceToPlay = {
+            "id": 16,
             "x": 3,
             "y": 4,
             "user": 2,
@@ -31,6 +34,7 @@ describe('---- Check weight ----', function() {
             "weight": 4
         };
         let plateClone = JSON.parse(JSON.stringify(plate.Plate));
+        plateClone[4][3] = pieceToPlay;
         applyWeight(plateClone, pieceToPlay);
         assert.equal(plateClone[4][3].state, 0);
 
